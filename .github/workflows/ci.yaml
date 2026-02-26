@@ -840,7 +840,7 @@ jobs:
     needs:
       - prepare
       - build-validate-helm-chart
-    if: ${{ !cancelled() && github.event_name != 'schedule' && needs.prepare.result == 'success' && needs.build-validate-helm-chart.result == 'success' }}
+    if: ${{ !cancelled() && github.event_name != 'schedule' && needs.prepare.result == 'success' && needs.build-validate-helm-chart.result == 'success' && !contains(github.ref, 'pull-request/') }}
     runs-on: linux-amd64-cpu4
     steps:
       - name: Checkout code
